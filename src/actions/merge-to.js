@@ -37,18 +37,22 @@ async function exec(cmd, args) {
 
 // eslint-disable-next-line
 module.exports = async (branch) => {
-  process.chdir(process.cwd());
-
   const lastLog = await exec('git', ['log', '-1']);
   const currentBranch = (await exec('git', ['symbolic-ref', '--short', '-q', 'HEAD'])).trim();
 
-  spawnSync('git', ['pull']);
-  spawnSync('git', ['add', './']);
-  spawnSync('git', ['commit', '-m', `commit: ${(new Date()).toLocaleString()}`]);
-  spawnSync('git', ['push']);
-  spawnSync('git', ['checkout', branch]);
-  spawnSync('git', ['pull']);
-  spawnSync('git', ['merge', currentBranch, '-m', `merge: ${currentBranch} merge to ${branch} ${(new Date()).toLocaleString()} \n ${lastLog}`]);
-  spawnSync('git', ['push']);
-  spawnSync('git', ['checkout', currentBranch]);
+  return new Promise((resolve) => {
+    process.chdir(process.cwd());
+
+    spawnSync('git', ['pull']);
+    spawnSync('git', ['add', './']);
+    spawnSync('git', ['commit', '-m', `commit: ${(new Date()).toLocaleString()}`]);
+    spawnSync('git', ['push']);
+    spawnSync('git', ['checkout', branch]);
+    spawnSync('git', ['pull']);
+    spawnSync('git', ['merge', currentBranch, '-m', `merge: ${currentBranch} merge to ${branch} ${(new Date()).toLocaleString()} \n ${lastLog}`]);
+    spawnSync('git', ['push']);
+    spawnSync('git', ['checkout', currentBranch]);
+
+    resolve();
+  });
 };
