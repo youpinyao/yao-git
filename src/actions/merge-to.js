@@ -44,7 +44,7 @@ module.exports = async (branch) => {
 
   spawnSync('git', ['pull']);
   spawnSync('git', ['add', './']);
-  spawnSync('git', ['commit', '-m', `build: ${(new Date()).toLocaleString()} \n ${lastLog}`]);
+  spawnSync('git', ['commit', '-m', `commit: ${(new Date()).toLocaleString()}`]);
   spawnSync('git', ['push']);
   spawnSync('git', ['checkout', branch]);
   spawnSync('git', ['pull']);
