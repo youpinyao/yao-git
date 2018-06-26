@@ -11,3 +11,5 @@ commander
   .parse(process.argv);
 
 if (commander.mergeTo) actions.mergeTo(commander.mergeTo);
+
+console.log('end');
