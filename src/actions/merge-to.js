@@ -41,8 +41,6 @@ module.exports = async (branch) => {
 
   const currentBranch = (await exec('git', ['symbolic-ref', '--short', '-q', 'HEAD'])).trim();
 
-  console.log(chalk.yellow(`current branch ${currentBranch}`));
-
   spawnSync('git', ['pull']);
   spawnSync('git', ['add', './']);
   spawnSync('git', ['commit', '-m', `build: ${(new Date()).toLocaleString()}`]);
