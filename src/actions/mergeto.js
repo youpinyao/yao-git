@@ -19,6 +19,8 @@ function doSpawnSync(cmd, args) {
 module.exports = (branch) => {
   process.chdir(process.cwd());
   exec('git symbolic-ref --short -q HEAD', (err, currentBranch) => {
+    // eslint-disable-next-line
+    console.log(chalk.yellow(`current branch ${currentBranch}`));
     doSpawnSync('git', ['pull']);
     doSpawnSync('git', ['add', './']);
     doSpawnSync('git', ['commit', '-m', `build[${(new Date()).toLocaleString()}]:build`]);
