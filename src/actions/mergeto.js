@@ -8,9 +8,12 @@ function doSpawnSync(cmd, args) {
   const options = {
     stdio: 'inherit',
   };
-  spawn.sync(cmd, args, options);
+  // eslint-disable-next-line
+  console.log(chalk.yellow(`${cmd} ${args.join(' ')}`));
+  const ret = spawn.sync(cmd, args, options);
   // eslint-disable-next-line
   console.log(chalk.yellow('=============================='));
+  return ret;
 }
 
 module.exports = (branch) => {
