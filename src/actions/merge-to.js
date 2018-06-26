@@ -9,7 +9,7 @@ function spawnSync(cmd, args) {
     stdio: 'inherit',
   };
   console.log(chalk.yellow(`${cmd} ${args.join(' ')}`));
-  console.log(chalk.blue('------------------------------'));
+  console.log(chalk.yellow('-------------'));
 
   const ret = spawn.sync(cmd, args, options);
 
@@ -19,8 +19,8 @@ function spawnSync(cmd, args) {
 
 async function exec(cmd, args) {
   const str = `${cmd} ${args.join(' ')}`;
-  console.log(chalk.blue('------------------------------'));
   console.log(chalk.yellow(str));
+  console.log(chalk.yellow('--------------'));
   return new Promise((resolve, reject) => {
     childProcessExec(str, (error, stdout, stderr) => {
       if (stderr) {
