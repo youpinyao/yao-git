@@ -10,6 +10,4 @@ commander
   .option('-m --mergeto <branch>', 'merge to branch')
   .parse(process.argv);
 
-console.log(commander.mergeto);
-
 if (commander.mergeto) actions.mergeto(commander.mergeto);
