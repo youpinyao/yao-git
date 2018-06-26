@@ -1,5 +1,6 @@
 // const fs = require('fs');
 // const path = require('path');
+const chalk = require('chalk');
 const spawn = require('cross-spawn');
 // const exec = require('child_process').exec;
 
@@ -8,6 +9,8 @@ function doSpawnSync(cmd, args) {
     stdio: 'inherit',
   };
   spawn.sync(cmd, args, options);
+  // eslint-disable-next-line
+  console.log(chalk.yellow('=============================='));
 }
 
 module.exports = (branch) => {
