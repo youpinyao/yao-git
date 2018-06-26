@@ -24,7 +24,7 @@ module.exports = (branch) => {
     console.log(chalk.yellow(`current branch ${currentBranch}`));
     doSpawnSync('git', ['pull']);
     doSpawnSync('git', ['add', './']);
-    doSpawnSync('git', ['commit', '-m', `build:${(new Date()).toLocaleString()}`]);
+    doSpawnSync('git', ['commit', '-m', `build: ${(new Date()).toLocaleString()}`]);
     doSpawnSync('git', ['push']);
     doSpawnSync('git', ['checkout', branch]);
     doSpawnSync('git', ['pull']);

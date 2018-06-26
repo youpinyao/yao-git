@@ -1,3 +1,3 @@
 module.exports = {
-  mergeto: require('./mergeto'),
+  mergeTo: require('./merge-to'),
 };

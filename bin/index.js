@@ -7,7 +7,7 @@ const actions = require('../src/actions');
 
 commander
   .version(require('../package.json').version)
-  .option('-m --mergeto <branch>', 'merge to branch')
+  .option('-m --merge-to <branch>', 'merge to branch')
   .parse(process.argv);
 
-if (commander.mergeto) actions.mergeto(commander.mergeto);
+if (commander.mergeTo) actions.mergeTo(commander.mergeTo);
