@@ -44,11 +44,11 @@ module.exports = async (branch) => {
 
   spawnSync('git', ['pull']);
   spawnSync('git', ['add', './']);
-  spawnSync('git', ['commit', '-m', `build: ${(new Date()).toLocaleString()} \n\r ${lastLog}`]);
+  spawnSync('git', ['commit', '-m', `build: ${(new Date()).toLocaleString()} \n ${lastLog}`]);
   spawnSync('git', ['push']);
   spawnSync('git', ['checkout', branch]);
   spawnSync('git', ['pull']);
-  spawnSync('git', ['merge', currentBranch, '-m', `merge: ${currentBranch} merge to ${branch} ${(new Date()).toLocaleString()} \n\r ${lastLog}`]);
+  spawnSync('git', ['merge', currentBranch, '-m', `merge: ${currentBranch} merge to ${branch} ${(new Date()).toLocaleString()} \n ${lastLog}`]);
   spawnSync('git', ['push']);
   spawnSync('git', ['checkout', currentBranch]);
 };
