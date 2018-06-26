@@ -39,15 +39,16 @@ async function exec(cmd, args) {
 module.exports = async (branch) => {
   process.chdir(process.cwd());
 
+  const lastLog = await exec('git', ['log', '-1']);
   const currentBranch = (await exec('git', ['symbolic-ref', '--short', '-q', 'HEAD'])).trim();
 
   spawnSync('git', ['pull']);
   spawnSync('git', ['add', './']);
-  spawnSync('git', ['commit', '-m', `build: ${(new Date()).toLocaleString()}`]);
+  spawnSync('git', ['commit', '-m', `build: ${(new Date()).toLocaleString()} \n ${lastLog}`]);
   spawnSync('git', ['push']);
   spawnSync('git', ['checkout', branch]);
   spawnSync('git', ['pull']);
-  spawnSync('git', ['merge', currentBranch, '-m', `merge: ${currentBranch} merge to ${branch} ${(new Date()).toLocaleString()}`]);
+  spawnSync('git', ['merge', currentBranch, '-m', `merge: ${currentBranch} merge to ${branch} ${(new Date()).toLocaleString()} \n ${lastLog}`]);
   spawnSync('git', ['push']);
   spawnSync('git', ['checkout', currentBranch]);
 };
